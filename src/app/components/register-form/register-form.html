@@ -1,0 +1,134 @@
+<mat-card class="example-card" appearance="outlined">
+  <mat-card-header>
+    <mat-card-title>Register Form</mat-card-title>
+    <mat-card-subtitle>Surtech Angular Challenge</mat-card-subtitle>
+  </mat-card-header>
+
+  <!-- Full Name -->
+
+ <mat-form-field appearance="fill">
+    <mat-label>Full Name</mat-label>
+    <input matInput placeholder="Full Name">    
+  </mat-form-field>
+
+  <!-- E-mail -->
+  <mat-form-field>
+    <mat-label>Enter your email</mat-label>
+    <input
+      matInput
+      placeholder="pat@example.com"
+      [formControl]="email"
+      (blur)="updateErrorMessage()"
+      required
+    />
+    @if (email.invalid) {
+    <mat-error>{{ errorMessage() }}</mat-error>
+    }
+  </mat-form-field>
+
+  <!-- Datepicker -->
+  <mat-form-field class="example-full-width">
+    <mat-label>Choose a date</mat-label>
+    <input matInput [matDatepicker]="picker" />
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker touchUi #picker></mat-datepicker>
+  </mat-form-field>
+
+  <!-- Telephone -->
+   <div style="display: flex;">
+    <mat-form-field style="flex: 1; margin-right: 8px;">
+      <mat-label>Area Code</mat-label>
+      <input matInput placeholder="+54" />
+      <mat-hint>(xxxx)</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field style="flex: 3;">
+      <mat-label>Phone Number</mat-label>
+      <input matInput placeholder="123456789" />
+      <mat-hint>xxxx-xxxx</mat-hint>
+    </mat-form-field>
+
+   </div>
+
+    <!-- Country Selector -->
+  <mat-form-field>
+    <mat-label>Select a country</mat-label>
+    <mat-select [(value)]="countrySelected">
+      <mat-option style="display: flex" value="Argentina">
+          <img
+            style="width: 20px; height: 15px; margin-left: auto"
+            src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Flag_of_Argentina.svg"
+            alt="Argentina Flag"
+          />
+        <span> Argentina</span>
+      </mat-option>
+      <mat-option value="Chile">
+            <img
+                style="width: 20px; height: 15px; margin-left: auto"
+                src="https://upload.wikimedia.org/wikipedia/commons/7/78/Flag_of_Chile.svg"
+                alt="Chile Flag"
+            />
+            <span> Chile</span>
+      </mat-option>
+      <mat-option value="Bolivia">
+            <img
+                style="width: 20px; height: 15px; margin-left: auto"
+                src="https://upload.wikimedia.org/wikipedia/commons/4/48/Flag_of_Bolivia.svg"
+                alt="Bolivia Flag"
+            />
+            <span> Bolivia</span>
+      </mat-option>
+      <mat-option value="Colombia">
+            <img
+                style="width: 20px; height: 15px; margin-left: auto"
+                src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg"
+                alt="Colombia Flag"
+            />
+            <span> Colombia</span>
+      </mat-option>
+
+      <mat-option value="Brasil">
+            <img
+                style="width: 20px; height: 15px; margin-left: auto"
+                src="https://upload.wikimedia.org/wikipedia/en/0/05/Flag_of_Brazil.svg"
+                alt="Brasil Flag"
+            />
+            <span> Brasil</span>
+
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- Password -->
+  <div>
+    <mat-form-field>
+      <mat-label>Enter your password</mat-label>
+      <input matInput [type]="hide() ? 'password' : 'text'" />
+      <button
+        matIconButton
+        matSuffix
+        (click)="clickEvent($event)"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide()"
+      >
+        <mat-icon>{{ hide() ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Repeat your password</mat-label>
+      <input matInput [type]="hide() ? 'password' : 'text'" />
+      <button
+        matIconButton
+        matSuffix
+        (click)="clickEvent($event)"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide()"
+      >
+        <mat-icon>{{ hide() ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+
+
+</mat-card>
