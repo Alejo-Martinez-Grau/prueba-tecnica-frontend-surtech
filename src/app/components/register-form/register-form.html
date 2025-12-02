@@ -1,8 +1,4 @@
-<mat-card class="example-card" appearance="outlined">
-  <mat-card-header>
-    <mat-card-title>Register Form</mat-card-title>
-    <mat-card-subtitle>Surtech Angular Challenge</mat-card-subtitle>
-  </mat-card-header>
+<section class="form-container">
 
   <!-- Full Name -->
 
@@ -100,7 +96,7 @@
   </mat-form-field>
 
   <!-- Password -->
-  <div>
+
     <mat-form-field>
       <mat-label>Enter your password</mat-label>
       <input matInput [type]="hide() ? 'password' : 'text'" />
@@ -128,7 +124,6 @@
         <mat-icon>{{ hide() ? 'visibility_off' : 'visibility' }}</mat-icon>
       </button>
     </mat-form-field>
-  </div>
 
 
-</mat-card>
+  </section>
