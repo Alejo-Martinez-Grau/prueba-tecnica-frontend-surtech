@@ -1,173 +1,69 @@
-# Prueba Técnica - Desarrollador Angular
+# Prueba Técnica Frontend - Surtech
 
-¡Bienvenido/a! Esta prueba técnica tiene como objetivo evaluar tus conocimientos en Angular, específicamente en formularios reactivos, validaciones y habilidades de maquetación.
+Proyecto desarrollado en Angular v21 como parte de una prueba técnica.
 
-## 📋 Descripción del Proyecto
+## 🚀 Demo en Vivo
 
-Deberás desarrollar un **formulario de registro de usuarios** con validaciones avanzadas y un diseño limpio y profesional.
+Puedes probar la aplicación deployada en: [https://alejo-martinez-grau.github.io/prueba-tecnica-frontend-surtech/](https://alejo-martinez-grau.github.io/prueba-tecnica-frontend-surtech/)
 
-## ⏱️ Tiempo Estimado
+## 📋 Requisitos Previos
 
-**4 a 6 horas** distribuidas en un máximo de **2 días** desde la recepción de esta prueba.
+Antes de comenzar, asegúrate de tener instalado:
 
-## 📦 Entrega
+- Node.js (versión 18 o superior)
+- npm (viene incluido con Node.js)
+- Git
 
-Una vez finalizada la prueba:
+## 🔧 Instalación y Ejecución
 
-1. Asegurate de que todos tus cambios estén commiteados
-2. Envía el enlace de tu repositorio público a: **[marcosarjonapsn@gmail.com]**
-3. Verifica que el proyecto se pueda clonar y ejecutar correctamente
+Sigue estos pasos para ejecutar el proyecto en tu entorno local:
 
-**Fecha límite:** 02/11/25 - 22hs
+1. **Clonar el repositorio**
 
----
+   ```bash
+   git clone https://github.com/Alejo-Martinez-Grau/prueba-tecnica-frontend-surtech.git
+   ```
 
-## 🎯 Requisitos Funcionales
+2. **Navegar al directorio del proyecto**
 
-### Campos del Formulario
+   ```bash
+   cd prueba-tecnica-frontend-surtech
+   ```
 
-El formulario debe contener los siguientes campos:
+3. **Instalar las dependencias**
 
-1. **Nombre completo**
-   - Campo requerido
-   - Mínimo 3 caracteres
+   ```bash
+   npm install
+   ```
 
-2. **Email**
-   - Campo requerido
-   - Validación de formato de email
+4. **Iniciar el servidor de desarrollo**
 
-3. **Teléfono** (formato argentino)
-   - Campo requerido
-   - Dividido en dos inputs:
-     - **Prefijo** (código de área, ej: 11, 351, 261)
-     - **Número** (el resto del teléfono)
+   ```bash
+   npm start
+   ```
 
-4. **Fecha de nacimiento**
-   - Campo requerido
-   - El usuario debe ser mayor de 18 años
+5. **Abrir en el navegador**
 
-5. **Contraseña**
-   - Campo requerido
-   - Mínimo 8 caracteres
-   - Debe incluir al menos:
-     - Una letra mayúscula
-     - Una letra minúscula
-     - Un número
+   La aplicación estará disponible en `http://localhost:4200/`
 
-6. **Confirmar contraseña**
-   - Campo requerido
-   - Debe coincidir exactamente con el campo contraseña
+## 🛠️ Decisiones Técnicas Relevantes
 
-7. **País**
-   - Campo requerido
-   - Lista desplegable (select) con al menos 5 países
+### Angular v21
 
----
+Se utilizó la última versión de Angular para aprovechar las mejoras de rendimiento y características más recientes del framework.
 
-## ✅ Validaciones Requeridas
+### Formularios Reactivos Tradicionales
 
-- **Todas las validaciones deben ser reactivas** (Reactive Forms)
-- Mostrar **mensajes de error específicos** para cada tipo de validación
-- Los errores deben aparecer **solo cuando el campo ha sido tocado** (`touched`)
-- Debes implementar **al menos un validador personalizado** (por ejemplo, el validador de edad mínima)
-- Estados visuales claros para campos válidos e inválidos
+Se optó por no utilizar **Signal Forms** debido a que esta característica aún se encuentra en fase experimental. Para garantizar la estabilidad y confiabilidad del proyecto, se implementaron formularios reactivos con el enfoque tradicional de Angular (`ReactiveFormsModule`).
 
----
+## 📚 Librerías Utilizadas
 
-## 🚀 Funcionalidades Adicionales
+- **Angular Material**
 
-1. **Botón de envío:**
-   - Debe estar **deshabilitado** hasta que el formulario sea completamente válido
-   - Al hacer click, procesar el envío
+## ⏱️ Tiempo de Desarrollo
 
-2. **Mostrar resumen:**
-   - Al enviar exitosamente, mostrar los datos ingresados en un **card/tabla/popup de resumen**
-   - Puedes usar cualquier método de visualización que consideres apropiado
+**Tiempo aproximado invertido**: 7-8 horas aproximadamente
 
-3. **Toggle de contraseña:**
-   - Implementar un botón/ícono para **mostrar/ocultar** la contraseña
-   - Aplicable tanto a "Contraseña" como "Confirmar contraseña"
+--
 
-4. **Reset del formulario:**
-   - Después de un envío exitoso, el formulario debe limpiarse automáticamente
-
----
-
-## 🎨 Diseño y Estilos (CSS)
-
-Si bien la **funcionalidad del formulario es la prioridad**, el diseño y estilado también suman puntos importantes:
-
-- Layout **responsive** (mobile-first preferentemente)
-- Diseño **limpio y profesional**
-- Estados visuales claros (hover, focus, error, success)
-- **Animaciones o transiciones** suaves (opcional pero valorado)
-
-**Nota:** Puedes usar CSS puro, SCSS, Tailwind, o cualquier enfoque que prefieras. ¡Demuestra tu creatividad!
-
----
-
-## 🛠️ Setup del Proyecto
-
-- Node.js (v18 o superior)
-- Angular CLI (v20 o superior)
-
----
-
-## 📚 Librerías Permitidas
-
-Puedes instalar y utilizar librerías confiables si lo consideras necesario, como:
-
-- **NgxMask** - Para máscaras de input
-- **SweetAlert2** - Para modales/alertas
-- **Angular Material** - Para componentes UI
-- **Tailwind CSS** - Para estilos utility-first
-- Otras librerías estables y bien mantenidas
-
----
-
-## 📝 Recomendaciones
-
-- **Haz commits frecuentes** con mensajes descriptivos
-- **Prioriza la funcionalidad** sobre el diseño (pero no descuides ninguno)
-- **Escribe código limpio** y mantenible
-- **Testea tu formulario** antes de enviar
-- Si algo no está claro, toma la decisión que consideres mejor y documéntala
-
----
-
-## 📧 ¿Preguntas?
-
-Si tienes dudas o consultas durante el desarrollo:
-
-- Email: **[marcosarjonapsn@gmail.com]**
-
----
-
-## 📄 Entregables
-
-Al finalizar, tu repositorio debe incluir:
-
-1. ✅ Código fuente completo
-2. ✅ README actualizado con:
-   - Instrucciones para ejecutar el proyecto
-   - Decisiones técnicas relevantes
-   - Librerías utilizadas (si aplica)
-   - Tiempo aproximado invertido
-3. ✅ El proyecto debe ejecutarse sin errores con `npm install && ng serve`
-
----
-
-## ⚡ Comenzar
-
-1. Haz un **fork** de este repositorio
-2. Clona tu fork localmente
-3. ¡Comienza a desarrollar!
-4. Cuando termines, envía el link de tu repositorio
-
----
-
-**¡Mucha suerte! Esperamos ver tu solución. 🚀**
-
----
-
-*Esta prueba técnica evalúa habilidades fundamentales para el puesto. Tómate tu tiempo y demuestra lo mejor de tus capacidades.*
+Desarrollado por [Alejo Martinez Grau](https://github.com/Alejo-Martinez-Grau)
