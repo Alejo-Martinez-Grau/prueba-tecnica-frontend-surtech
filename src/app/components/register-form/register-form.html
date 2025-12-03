@@ -1,4 +1,8 @@
-<section>
+<section class="section-container">
+  <header >
+    <h2>Register Form</h2>
+    <p>Surtech Angular Chanllenge</p>
+  </header>
   <form
     class="form-container"
     action=""
@@ -65,7 +69,7 @@
 
         @if(form.get('areaCode')?.invalid && (form.get('areaCode')?.touched ||
         form.get('areaCode')?.dirty)){
-        <mat-error> Enter a valid area code </mat-error>
+        <mat-error> 2-4 chars. </mat-error>
         }
       </mat-form-field>
 
