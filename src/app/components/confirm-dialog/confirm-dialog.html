@@ -1,0 +1,53 @@
+<mat-card class="card">
+    <mat-card-title>
+        Confirm your data
+    </mat-card-title>
+
+  <mat-card-content>
+<div style="display: flex; flex-direction: column;">
+
+    <p><strong>Full name:</strong> {{ data?.fullName }}</p>
+    <p><strong>Email:</strong> {{ data?.email }}</p>
+    <p><strong>Birth date:</strong> {{ data?.date | date:'longDate' }}</p>
+    <p>
+      <strong>Phone:</strong>
+      {{ data?.areaCode }} - {{ data?.phone }}
+    </p>
+    <p><strong>Country:</strong> {{ data?.country }}</p>
+</div>
+      <div style="display: flex; ">
+        <p><strong>
+Password: 
+        </strong></p>
+        <button
+            style="align-self: center;"
+            type="button"
+            matIconButton
+            matSuffix
+            (click)="toggleHidePassword($event)"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hidePassword()"
+          >
+            <mat-icon>{{ hidePassword() ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+@if(hidePassword()){
+<p ><strong>
+     ********
+    </strong></p>
+    
+}@else{
+    <p ><strong>
+      {{ data?.password }}
+    </strong></p> 
+    
+}
+          
+      </div>
+  </mat-card-content>
+
+
+  <mat-card-actions align="end">
+    <button matButton="filled"  type="button" (click)="confirm()">Confirm</button>
+    <button matButton="outlined" type="button" (click)="cancel()">Cancel</button>
+</mat-card-actions>
+</mat-card>

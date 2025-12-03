@@ -193,6 +193,6 @@
       <mat-error> Passwords do not match </mat-error>
       }
     </mat-form-field>
-    <button matButton="filled" type="submit">Register</button>
+    <button matButton="filled" type="submit" [disabled]="form.invalid" >Register</button>
   </form>
 </section>

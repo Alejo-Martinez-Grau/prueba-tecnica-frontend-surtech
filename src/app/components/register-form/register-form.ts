@@ -20,6 +20,8 @@ import { provideNativeDateAdapter, MAT_DATE_LOCALE } from '@angular/material/cor
 import { merge, min } from 'rxjs';
 import { createPasswordStrengthValidator } from '../../validators/password-strength.validator';
 import { age18Validator } from '../../validators/age-18.validator';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialog } from '../confirm-dialog/confirm-dialog';
 
 @Component({
   selector: 'app-register-form',
@@ -40,6 +42,7 @@ import { age18Validator } from '../../validators/age-18.validator';
 })
 export class RegisterForm {
   private formBuilder = inject(FormBuilder);
+  dialog = inject(MatDialog);
 
   readonly hidePassword = signal(true);
   readonly hideConfirmPassword = signal(true);
@@ -112,12 +115,15 @@ export class RegisterForm {
   }
 
   onSubmit() {
-    if (this.form.valid) {
-      console.log('Form Submitted', this.form.value);
-    } else {
-      console.log('Form is invalid');
-      this.form.markAllAsTouched();
-      this.updateErrorMessage();
-    }
+    const dialogRef = this.dialog.open(ConfirmDialog, {
+      data: this.form.value,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result !== undefined) {
+        console.log('Form Submitted', this.form.value);
+        this.form.reset();
+      }
+    });
   }
 }
