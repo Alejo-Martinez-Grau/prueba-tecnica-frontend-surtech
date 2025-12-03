@@ -19,6 +19,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { provideNativeDateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { merge, min } from 'rxjs';
 import { createPasswordStrengthValidator } from '../../validators/password-strength.validator';
+import { age18Validator } from '../../validators/age-18.validator';
 
 @Component({
   selector: 'app-register-form',
@@ -49,7 +50,7 @@ export class RegisterForm {
     {
       fullName: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email, Validators.pattern(this.emailRegex)]],
-      date: [null, Validators.required],
+      date: [null, [Validators.required, age18Validator()]],
       areaCode: [
         '',
         [
@@ -109,6 +110,7 @@ export class RegisterForm {
     } else {
       console.log('Form is invalid');
       this.form.markAllAsTouched();
+      this.updateErrorMessage();
     }
   }
 }
