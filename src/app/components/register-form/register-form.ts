@@ -18,6 +18,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
 import { provideNativeDateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { merge, min } from 'rxjs';
+import { createPasswordStrengthValidator } from '../../validators/password-strength.validator';
 
 @Component({
   selector: 'app-register-form',
@@ -42,10 +43,12 @@ export class RegisterForm {
   readonly hide = signal(true);
   readonly errorMessage = signal('');
 
+  emailRegex: RegExp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
   public form: FormGroup = this.formBuilder.group(
     {
       fullName: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.email, Validators.pattern(this.emailRegex)]],
       date: [null, Validators.required],
       areaCode: [
         '',
@@ -66,7 +69,7 @@ export class RegisterForm {
         ],
       ],
       country: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', [Validators.required, Validators.minLength(6), createPasswordStrengthValidator()]],
       confirmPassword: ['', Validators.required],
     },
     { validators: this.passwordMatchValidator }
@@ -88,7 +91,7 @@ export class RegisterForm {
   updateErrorMessage() {
     if (this.form.get('email')?.hasError('required')) {
       this.errorMessage.set('You must enter a value');
-    } else if (this.form.get('email')?.hasError('email')) {
+    } else if (this.form.get('email')?.invalid) {
       this.errorMessage.set('Not a valid email');
     } else {
       this.errorMessage.set('');

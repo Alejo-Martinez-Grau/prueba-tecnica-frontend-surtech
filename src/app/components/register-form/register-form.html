@@ -137,7 +137,7 @@
     <!-- Password -->
     <mat-form-field>
       <mat-label>Enter your password</mat-label>
-      <input autocomplete="new-password" matInput [type]="hide() ? 'password' : 'text'" formControlName="password" />
+      <input autocomplete="new-password" matInput [type]="hide() ? 'password' : 'text'" formControlName="password"  />
       <button
         matIconButton
         matSuffix
@@ -147,8 +147,12 @@
       >
         <mat-icon>{{ hide() ? 'visibility_off' : 'visibility' }}</mat-icon>
       </button>
-      @if(form.get('password')?.invalid && (form.get('password')?.touched || form.get('password')?.dirty)){
+ 
+      @if((form.get('password')?.hasError('minlength') ||  form.get('password')?.hasError('required') ) && (form.get('password')?.touched || form.get('password')?.dirty)){
       <mat-error> Password is required (min 6 chars) </mat-error>
+      }
+      @if(form.get('password')?.hasError('passwordStrength')){
+      <mat-error> Password must include uppercase, lowercase, number, and special character </mat-error>
       }
       
     </mat-form-field>
