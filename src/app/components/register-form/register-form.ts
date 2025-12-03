@@ -41,7 +41,8 @@ import { age18Validator } from '../../validators/age-18.validator';
 export class RegisterForm {
   private formBuilder = inject(FormBuilder);
 
-  readonly hide = signal(true);
+  readonly hidePassword = signal(true);
+  readonly hideConfirmPassword = signal(true);
   readonly errorMessage = signal('');
 
   emailRegex: RegExp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -70,23 +71,25 @@ export class RegisterForm {
         ],
       ],
       country: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6), createPasswordStrengthValidator()]],
+      password: [
+        '',
+        [Validators.required, Validators.minLength(8), createPasswordStrengthValidator()],
+      ],
       confirmPassword: ['', Validators.required],
     },
     { validators: this.passwordMatchValidator }
   );
-  
 
   passwordMatchValidator(group: AbstractControl): ValidationErrors | null {
     const password = group.get('password')?.value;
-  const confirmPassword = group.get('confirmPassword')?.value;
-  
-  if (password !== confirmPassword) {
-    group.get('confirmPassword')?.setErrors({ passwordMismatch: true });
-    return { passwordMismatch: true };
-  }
-  
-  return null;
+    const confirmPassword = group.get('confirmPassword')?.value;
+
+    if (password !== confirmPassword) {
+      group.get('confirmPassword')?.setErrors({ passwordMismatch: true });
+      return { passwordMismatch: true };
+    }
+
+    return null;
   }
 
   updateErrorMessage() {
@@ -99,8 +102,12 @@ export class RegisterForm {
     }
   }
 
-  toggleHidePassword(event: MouseEvent) {
-    this.hide.set(!this.hide());
+  toggleHidePassword(event: MouseEvent, isConfirmPassword: boolean = false) {
+    if (isConfirmPassword) {
+      this.hideConfirmPassword.set(!this.hideConfirmPassword());
+    } else {
+      this.hidePassword.set(!this.hidePassword());
+    }
     event.stopPropagation();
   }
 

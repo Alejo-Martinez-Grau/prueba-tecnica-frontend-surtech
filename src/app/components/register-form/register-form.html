@@ -13,8 +13,7 @@
       @if (form.get('fullName')?.hasError('required') && (form.get('fullName')?.touched ||
       form.get('fullName')?.dirty)) {
       <mat-error> Full name is required </mat-error>
-      }
-      @if( form.get('fullName')?.hasError('minlength') && (form.get('fullName')?.touched ||
+      } @if( form.get('fullName')?.hasError('minlength') && (form.get('fullName')?.touched ||
       form.get('fullName')?.dirty)) {
       <mat-error> At least 3 characters </mat-error>
       }
@@ -43,10 +42,10 @@
       <input matInput [matDatepicker]="picker" readonly formControlName="date" />
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker touchUi #picker></mat-datepicker>
-      @if(form.get('date')?.hasError('required') && (form.get('date')?.touched || form.get('date')?.dirty)) {
+      @if(form.get('date')?.hasError('required') && (form.get('date')?.touched ||
+      form.get('date')?.dirty)) {
       <mat-error> Date is required </mat-error>
-      }
-      @if(form.get('date')?.hasError('underAge') ){
+      } @if(form.get('date')?.hasError('underAge') ){
       <mat-error> You must be at least 18 years old </mat-error>
       }
     </mat-form-field>
@@ -132,7 +131,8 @@
           <span> Brasil</span>
         </mat-option>
       </mat-select>
-      @if(form.get('country')?.invalid && (form.get('country')?.touched || form.get('country')?.dirty)){
+      @if(form.get('country')?.invalid && (form.get('country')?.touched ||
+      form.get('country')?.dirty)){
       <mat-error> Country is required </mat-error>
       }
     </mat-form-field>
@@ -140,42 +140,54 @@
     <!-- Password -->
     <mat-form-field>
       <mat-label>Enter your password</mat-label>
-      <input autocomplete="new-password" matInput [type]="hide() ? 'password' : 'text'" formControlName="password"  />
+      <input
+        autocomplete="new-password"
+        matInput
+        [type]="hidePassword() ? 'password' : 'text'"
+        formControlName="password"
+      />
       <button
+        type="button"
         matIconButton
         matSuffix
         (click)="toggleHidePassword($event)"
         [attr.aria-label]="'Hide password'"
-        [attr.aria-pressed]="hide()"
+        [attr.aria-pressed]="hidePassword()"
       >
-        <mat-icon>{{ hide() ? 'visibility_off' : 'visibility' }}</mat-icon>
+        <mat-icon>{{ hidePassword() ? 'visibility_off' : 'visibility' }}</mat-icon>
       </button>
- 
-      @if((form.get('password')?.hasError('minlength') ||  form.get('password')?.hasError('required') ) && (form.get('password')?.touched || form.get('password')?.dirty)){
-      <mat-error> Password is required (min 6 chars) </mat-error>
+
+      @if((form.get('password')?.hasError('minlength') || form.get('password')?.hasError('required')
+      ) && (form.get('password')?.touched || form.get('password')?.dirty)){
+      <mat-error> Password is required (min 8 characters) </mat-error>
+      } @if(form.get('password')?.hasError('passwordStrength')){
+      <mat-error>
+        Password must include uppercase, lowercase, number, and special character
+      </mat-error>
       }
-      @if(form.get('password')?.hasError('passwordStrength')){
-      <mat-error> Password must include uppercase, lowercase, number, and special character </mat-error>
-      }
-      
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Repeat your password</mat-label>
-      <input autocomplete="new-password"  matInput [type]="hide() ? 'password' : 'text'" formControlName="confirmPassword" />
+      <input
+        autocomplete="new-password"
+        matInput
+        [type]="hideConfirmPassword() ? 'password' : 'text'"
+        formControlName="confirmPassword"
+      />
       <button
+        type="button"
         matIconButton
         matSuffix
-        (click)="toggleHidePassword($event)"
+        (click)="toggleHidePassword($event, true)"
         [attr.aria-label]="'Hide password'"
-        [attr.aria-pressed]="hide()"        
+        [attr.aria-pressed]="hideConfirmPassword()"
       >
-        <mat-icon>{{ hide() ? 'visibility_off' : 'visibility' }}</mat-icon>
+        <mat-icon>{{ hideConfirmPassword() ? 'visibility_off' : 'visibility' }}</mat-icon>
       </button>
-          @if(form.hasError('passwordMismatch') ){
+      @if(form.hasError('passwordMismatch') ){
       <mat-error> Passwords do not match </mat-error>
       }
-
     </mat-form-field>
     <button matButton="filled" type="submit">Register</button>
   </form>
